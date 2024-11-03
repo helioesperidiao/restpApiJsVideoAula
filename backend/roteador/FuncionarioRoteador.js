@@ -15,6 +15,11 @@ module.exports = class FuncionarioRoteador {
     }
     criarRotasFuncionario = () => {
 
+
+        this.router.post("/login/",
+            this.funcionarioControle.funcionario_login_controle
+        );
+
         this.router.post("/",
             this.funcionarioMiddleware.validar_nomeFuncionario,
             this.funcionarioMiddleware.is_cargo_By_Id,

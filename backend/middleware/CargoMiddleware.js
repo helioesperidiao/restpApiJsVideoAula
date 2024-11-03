@@ -30,8 +30,9 @@ module.exports = class CargoMiddleware {
             const objResposta = {
                 status: false,
                 msg: "Já Existe um cargo cadastrado com esse nome"
+                 
             }
-            response.statuss(400).send(objResposta);
+            response.status(400).send(objResposta);
         } else {
             next();
         }

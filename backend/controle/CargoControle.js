@@ -10,6 +10,7 @@ module.exports = class CargoControle {
         const objResposta = {
             status: true,
             msg: "Cadastrado com sucesso",
+            token: null,
         }
         const criou = await cargo.create();
         if (criou === false) {
@@ -18,6 +19,7 @@ module.exports = class CargoControle {
             response.status(500).send(objResposta);
 
         } else {
+            objResposta.token = request.headers.authorization;
             response.status(201).send(objResposta);
         }
     }

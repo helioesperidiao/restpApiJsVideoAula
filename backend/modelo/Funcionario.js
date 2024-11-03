@@ -106,16 +106,17 @@ module.exports = class Funcionario {
 
         try {
 
-            const [resultado] = await Banco.getConexao().promise().execute(SQL, [this.idFuncionario]);
+            const [resultado] = await Banco.getConexao().promise().execute(SQL, [this.email, this.senha]);
 
-            if (resultado.length > 0 && resultado[0].qtd === 1) {
-                this.idFuncionario = resultado[0].idFuncionario;
-                this.nomeFuncionario = resultado[0].nomeFuncionario;
-                this.recebeValeTransporte = resultado[0].recebeValeTransporte;
-                this.cargo.id = resultado[0].idCargo;
-                this.nomeCargo = resultado[0].nomeCargo;
-                return true;
-
+            if (resultado.length > 0) {
+                if (resultado[0].qtd === 1) {
+                    this.idFuncionario = resultado[0].idFuncionario;
+                    this.nomeFuncionario = resultado[0].nomeFuncionario;
+                    this.recebeValeTransporte = resultado[0].recebeValeTransporte;
+                    this.cargo.idCargo = resultado[0].idCargo;
+                    this.cargo.nomeCargo = resultado[0].nomeCargo;
+                    return true;
+                }
             }
             return false;
 
