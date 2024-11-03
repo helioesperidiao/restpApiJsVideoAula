@@ -7,14 +7,15 @@ module.exports = class CargoMiddleware {
 
         if (nomeCargo.length < 3) {
             const objResposta = {
-                statu: false,
+                status: false,
                 msg: "o nome deve possuir mais do que 3 caracteres"
             }
-            response.status(400).send(objResposta);
+            response.statuss(400).send(objResposta);
         } else {
             next();
         }
     }
+
 
 
     validar_cargo_nao_existe = async (request, response, next) => {
@@ -27,10 +28,10 @@ module.exports = class CargoMiddleware {
 
         if (existe === true) {
             const objResposta = {
-                statu: false,
+                status: false,
                 msg: "Já Existe um cargo cadastrado com esse nome"
             }
-            response.status(400).send(objResposta);
+            response.statuss(400).send(objResposta);
         } else {
             next();
         }

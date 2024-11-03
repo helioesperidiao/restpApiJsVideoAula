@@ -61,6 +61,19 @@ module.exports = class Cargo {
 
     }
 
+    isCargoById = async () => {
+        const SQL = "select count(*) as qtd from cargo where idCargo=?";
+        try {
+            //const conexao = Banco.getConexao();
+            const [resposta] = await Banco.getConexao().promise().execute(SQL, [this.idCargo]);
+            return resposta[0].qtd > 0;
+        } catch (error) {
+            console.error(error);
+            return false;
+        }
+
+    }
+
     readAll = async () => {
         const SQL = "select * from cargo order by nomeCargo";
         try {
